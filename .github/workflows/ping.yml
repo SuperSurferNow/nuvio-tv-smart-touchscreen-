@@ -1,9 +1,0 @@
-name: ping
-on:
-  push:
-    branches: ['ccr-*']
-jobs:
-  ping:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ok
