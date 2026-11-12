@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Nuvio TV Installer (Touch)
+Comment=Install Nuvio TV on Samsung Tizen and LG webOS TVs - touchscreen friendly
+Exec=nuvio-tv-installer %U
+Icon=io.github.SuperSurferNow.NuvioTVInstallerTouch
+Categories=Utility;
+Terminal=false

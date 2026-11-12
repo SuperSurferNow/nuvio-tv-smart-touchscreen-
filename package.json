@@ -1,0 +1,87 @@
+{
+  "name": "nuvio-tv-installer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Touchscreen-friendly desktop installer for Nuvio TV (Samsung Tizen / LG webOS).",
+  "author": "NuvioMedia",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --check src/main.js && node --check src/preload.js && node --check src/renderer/renderer.js && node --check src/renderer/touch-keyboard.js && node --check src/samsung-certificate-chain.js && node --check src/webos-ssh-compat-patch.js && node --check src/webos-key-download-diagnostics.js && node --test test/samsung-certificate-chain.test.cjs",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win --publish never",
+    "dist:mac": "electron-builder --mac --publish never",
+    "dist:linux": "electron-builder --linux --publish never",
+    "dist:dir": "electron-builder --linux dir --publish never"
+  },
+  "dependencies": {
+    "@webos-tools/cli": "^3.2.4",
+    "@xmldom/xmldom": "^0.8.10",
+    "adbhost": "^0.0.2",
+    "jszip": "^3.10.1",
+    "node-forge": "^1.3.1",
+    "tizen": "https://github.com/reisxd/tizen.js/tarball/main"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "space.nuvio.webtvinstaller",
+    "productName": "Nuvio TV Installer",
+    "icon": "icon.png",
+    "asar": true,
+    "npmRebuild": false,
+    "directories": {
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "logo/**/*",
+      "build/icon.png",
+      "installer.config.json",
+      "package.json",
+      "!**/*.map"
+    ],
+    "win": {
+      "icon": "icon.ico",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "NuvioTVSmart-Installer-${version}-Windows.${ext}"
+    },
+    "mac": {
+      "icon": "icon.icns",
+      "extendInfo": {
+        "NSLocalNetworkUsageDescription": "Nuvio TV Installer connects to your TV on the local network to install and manage Nuvio."
+      },
+      "target": [
+        {
+          "target": "dir"
+        }
+      ]
+    },
+    "linux": {
+      "icon": "icon.png",
+      "category": "Utility",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "appImage": {
+      "artifactName": "NuvioTVSmart-Installer-${version}-Linux.${ext}"
+    }
+  }
+}

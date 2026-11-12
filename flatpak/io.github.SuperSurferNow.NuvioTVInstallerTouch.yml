@@ -1,0 +1,38 @@
+app-id: io.github.SuperSurferNow.NuvioTVInstallerTouch
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '24.08'
+command: nuvio-tv-installer
+separate-locales: false
+finish-args:
+  - --share=ipc
+  - --share=network        # talk to the TV, download releases from GitHub
+  - --socket=x11
+  - --socket=wayland
+  - --device=dri
+  - --filesystem=xdg-download   # save logs / pick .wgt .ipk files from Downloads
+modules:
+  - name: nuvio-tv-installer
+    buildsystem: simple
+    build-commands:
+      - cp -a linux-unpacked /app/nuvio
+      - install -Dm755 run.sh /app/bin/nuvio-tv-installer
+      - install -Dm644 io.github.SuperSurferNow.NuvioTVInstallerTouch.desktop /app/share/applications/io.github.SuperSurferNow.NuvioTVInstallerTouch.desktop
+      - install -Dm644 io.github.SuperSurferNow.NuvioTVInstallerTouch.metainfo.xml /app/share/metainfo/io.github.SuperSurferNow.NuvioTVInstallerTouch.metainfo.xml
+      - install -Dm644 icon.png /app/share/icons/hicolor/512x512/apps/io.github.SuperSurferNow.NuvioTVInstallerTouch.png
+    sources:
+      # Produced by `npm run dist:dir` (electron-builder unpacked Linux build)
+      - type: dir
+        path: ../dist/linux-unpacked
+        dest: linux-unpacked
+      - type: file
+        path: run.sh
+      - type: file
+        path: io.github.SuperSurferNow.NuvioTVInstallerTouch.desktop
+      - type: file
+        path: io.github.SuperSurferNow.NuvioTVInstallerTouch.metainfo.xml
+      - type: file
+        path: ../build/icon.png
+        dest-filename: icon.png
