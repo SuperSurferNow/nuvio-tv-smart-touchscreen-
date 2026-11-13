@@ -12,7 +12,7 @@ if ! command -v npm >/dev/null; then
   brew install node
 fi
 
-npm ci
+npm install
 npm run dist:dir
 
 flatpak run org.flatpak.Builder --user --force-clean --install-deps-from=flathub \

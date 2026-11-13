@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies and run checks
         run: |
-          npm ci
+          npm install
           npm test
 
       - name: Build unpacked Electron app

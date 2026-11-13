@@ -26,7 +26,7 @@ flatpak run io.github.SuperSurferNow.NuvioTVInstallerTouch
 ## Build it yourself
 
 ```bash
-npm ci
+npm install
 npm run dist:dir
 flatpak-builder --user --force-clean --install-deps-from=flathub --repo=repo build-dir flatpak/io.github.SuperSurferNow.NuvioTVInstallerTouch.yml
 flatpak build-bundle repo NuvioTVInstaller-Touch.flatpak io.github.SuperSurferNow.NuvioTVInstallerTouch
