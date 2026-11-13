@@ -34,5 +34,4 @@ modules:
       - type: file
         path: io.github.SuperSurferNow.NuvioTVInstallerTouch.metainfo.xml
       - type: file
-        path: ../build/icon.png
-        dest-filename: icon.png
+        path: icon.png
